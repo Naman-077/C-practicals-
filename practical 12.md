@@ -37,3 +37,4 @@ int main() {
     removeWhitespaces(sourceFile, destFile);
     return 0;
 }
+![Uploading image.png…]()
