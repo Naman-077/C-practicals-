@@ -40,10 +40,14 @@ int main(int argc, char *argv[]) {
         cout << "Please enter a positive integer." << endl;
         return 1;
     }
-    
+
     // Compute and display the sum
     double result = computeSeriesSum(n);
     cout << "The sum of the first " << n << " terms is: " << result << endl;
     
     return 0;
 }
+
+
+![image](https://github.com/user-attachments/assets/8167e1db-8de3-478a-addb-3789e83b16f3)
+
