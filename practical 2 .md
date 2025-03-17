@@ -35,6 +35,12 @@ int main() {
     
     cout << "Array after removing duplicates: ";
     for (int num : result) {
+
+
+
+
+    ![Uploading image.png…]()
+
         cout << num << " ";
     }
     cout << endl;
