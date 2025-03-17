@@ -157,3 +157,23 @@ int main() {
     
     return 0;
 }
+
+
+
+
+
+![image](https://github.com/user-attachments/assets/ff04f157-a321-4bd0-977e-b5bb2baaec4c)
+
+![image](https://github.com/user-attachments/assets/bd7fd369-355b-43d7-8d50-d19e34cbc302)
+
+![image](https://github.com/user-attachments/assets/0db021c8-8cf6-46d3-a361-29e3a7534f73)
+![image](https://github.com/user-attachments/assets/47169a7d-ae6c-4141-8a4e-07d7437f9555)
+
+![image](https://github.com/user-attachments/assets/7ead715a-6591-40b2-9ce4-edc75015f6c7)
+
+![image](https://github.com/user-attachments/assets/dac73420-e6d4-4954-948e-ae1ba4ca1b4c)
+
+
+
+
+
