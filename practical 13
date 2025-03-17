@@ -1,0 +1,92 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+class Student {
+private:
+    int rollNo;
+    string name;
+    string className;
+    int year;
+    float totalMarks;
+
+public:
+    // Default constructor
+    Student() : rollNo(0), name(""), className(""), year(0), totalMarks(0.0f) {}
+
+    // Parameterized constructor
+    Student(int roll, string n, string c, int y, float marks)
+        : rollNo(roll), name(n), className(c), year(y), totalMarks(marks) {}
+
+    // Function to input student details
+    void input() {
+        cout << "Enter Roll Number: ";
+        cin >> rollNo;
+        cin.ignore(); // To clear the input buffer
+        cout << "Enter Name: ";
+        getline(cin, name);
+        cout << "Enter Class: ";
+        getline(cin, className);
+        cout << "Enter Year: ";
+        cin >> year;
+        cout << "Enter Total Marks: ";
+        cin >> totalMarks;
+    }
+
+    // Function to display student details
+    void display() const {
+        cout << "Roll No: " << rollNo << endl;
+        cout << "Name: " << name << endl;
+        cout << "Class: " << className << endl;
+        cout << "Year: " << year << endl;
+        cout << "Total Marks: " << totalMarks << endl;
+    }
+
+    // Function to write student data to file
+    void writeToFile(ofstream& outFile) {
+        outFile.write(reinterpret_cast<char*>(this), sizeof(*this));
+    }
+
+    // Function to read student data from file
+    void readFromFile(ifstream& inFile) {
+        inFile.read(reinterpret_cast<char*>(this), sizeof(*this));
+    }
+};
+
+int main() {
+    // Creating an array of 5 Student objects
+    Student students[5];
+
+    // Input details of 5 students and store in the file
+    ofstream outFile("students.dat", ios::binary);
+    if (!outFile) {
+        cout << "Error opening file for writing!" << endl;
+        return 1;
+    }
+
+    cout << "Enter details for 5 students:" << endl;
+    for (int i = 0; i < 5; ++i) {
+        cout << "\nStudent " << (i + 1) << ":" << endl;
+        students[i].input();
+        students[i].writeToFile(outFile);  // Write student data to file
+    }
+    outFile.close();  // Close the file after writing
+
+    // Read data from file and display it
+    ifstream inFile("students.dat", ios::binary);
+    if (!inFile) {
+        cout << "Error opening file for reading!" << endl;
+        return 1;
+    }
+
+    cout << "\n\nDisplaying student records from file:\n";
+    for (int i = 0; i < 5; ++i) {
+        students[i].readFromFile(inFile);  // Read student data from file
+        students[i].display();  // Display the student data
+        cout << "----------------------------" << endl;
+    }
+    inFile.close();  // Close the file after reading
+
+    return 0;
+}
