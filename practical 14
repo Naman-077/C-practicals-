@@ -1,0 +1,39 @@
+#include <iostream>
+#include <fstream>
+#include <cctype>  // For checking whitespace characters
+using namespace std;
+
+int main() {
+    // Declare file streams
+    ifstream inputFile("file1.txt");  // Input file (file1.txt)
+    ofstream outputFile("file2.txt"); // Output file (file2.txt)
+
+    // Check if input file opened successfully
+    if (!inputFile) {
+        cout << "Error opening input file!" << endl;
+        return 1;  // Return with error code if file can't be opened
+    }
+
+    // Check if output file opened successfully
+    if (!outputFile) {
+        cout << "Error opening output file!" << endl;
+        return 1;  // Return with error code if file can't be opened
+    }
+
+    char ch;
+    // Read characters from input file and write to output file after removing whitespaces
+    while (inputFile.get(ch)) {
+        // Check if the character is not a whitespace
+        if (!isspace(ch)) {
+            outputFile.put(ch);  // Write non-whitespace character to output file
+        }
+    }
+
+    // Close the files
+    inputFile.close();
+    outputFile.close();
+
+    cout << "Contents copied from file1.txt to file2.txt after removing whitespaces." << endl;
+
+    return 0;
+}
