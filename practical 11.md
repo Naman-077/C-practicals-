@@ -1,68 +1,31 @@
-// Q11-Create a class Student containing fields for Roll No., Name, Class, Year and Total
-//Marks. Write a program to store 5 objects of Student class in a file. Retrieve these
-//records from the file and display them.
-
+// Q11-Write a program to read two numbers p and q. If q is 0 then throw an exception else display the result of p/q.
 
 #include <iostream>
-#include <fstream>
+#include <stdexcept> // For standard exceptions
 using namespace std;
 
-class Student {
-public:
-    int rollNo;
-    string name;
-    string studentClass;
-    int year;
-    float totalMarks;
-
-    void input() {
-        cout << "Enter Roll No: ";
-        cin >> rollNo;
-        cin.ignore(); // Ignore newline character
-        cout << "Enter Name: ";
-        getline(cin, name);
-        cout << "Enter Class: ";
-        getline(cin, studentClass);
-        cout << "Enter Year: ";
-        cin >> year;
-        cout << "Enter Total Marks: ";
-        cin >> totalMarks;
-    }
-
-    void display() {
-        cout << "Roll No: " << rollNo << "\nName: " << name << "\nClass: " << studentClass << "\nYear: " << year << "\nTotal Marks: " << totalMarks << "\n\n";
-    }
-};
-
 int main() {
-    Student students[5];
-    fstream file;
+    int p, q;
 
-    // Writing to file
-    file.open("students.dat", ios::out | ios::binary);
-    if (!file) {
-        cout << "Error opening file!" << endl;
-        return 1;
-    }
-    cout << "Enter details for 5 students:\n";
-    for (int i = 0; i < 5; i++) {
-        students[i].input();
-        file.write(reinterpret_cast<char*>(&students[i]), sizeof(Student));
-    }
-    file.close();
+    try {
+        cout << "Enter the value of p: ";
+        cin >> p;
 
-    // Reading from file
-    file.open("students.dat", ios::in | ios::binary);
-    if (!file) {
-        cout << "Error opening file!" << endl;
-        return 1;
+        cout << "Enter the value of q: ";
+        cin >> q;
+
+        if (q == 0) {
+            throw runtime_error("Division by zero is not allowed!");
+        }
+
+        // If no exception, calculate and display the result
+        float result = static_cast<float>(p) / q;
+        cout << "Result of p / q: " << result << endl;
+
+    } catch (const runtime_error& e) {
+        // Catch and display the exception message
+        cout << "Exception occurred: " << e.what() << endl;
     }
-    cout << "\nStudent Records:\n";
-    Student temp;
-    while (file.read(reinterpret_cast<char*>(&temp), sizeof(Student))) {
-        temp.display();
-    }
-    file.close();
 
     return 0;
 }
